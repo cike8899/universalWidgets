@@ -1,4 +1,4 @@
-!function () {
+!function temp() {
     var icons = document.querySelectorAll(".font-container");
     var current = 0;
     var container;
@@ -8,7 +8,6 @@
     for (; i < length; i++) {
         !function (j) {
             icons[i].addEventListener("click", function (e) {
-                console.info(j);
                 if (j == 0) {//左
                     if (current != 0) {
                         current--;
