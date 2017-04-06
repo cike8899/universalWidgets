@@ -12,10 +12,25 @@
                 if (j == 0) {//左
                     if (current != 0) {
                         current--;
-                        items[current].setAttribute("transform", "");
+                        for (var k = 0; k < items.length; k++) {
+                            if (k == current) {
+                                items[k].style.display = "block";
+                            } else {
+                                items[k].style.display = "none";
+                            }
+                        }
                     }
                 } else {
-
+                    if (current != 3) {
+                        current++;
+                        for (var m = 0; m < items.length; m++) {
+                            if (m == current) {
+                                items[m].style.display = "block";
+                            } else {
+                                items[m].style.display = "none";
+                            }
+                        }
+                    }
                 }
             })
         }(i)
@@ -25,7 +40,7 @@
             container = document.querySelector(".carousel-container");
         }
         var i, len;
-        var items = container.childNodes;
+        var items = container.children;
         for (i = 0, len = items.length; i < len; i++) {
             items.identity = i;
         }
