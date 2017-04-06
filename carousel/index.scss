@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.carousel {
+    margin: 30px;
+}
+
+.wrapper {
+    height: 300px;
+    width: 600px;
+    position: relative;
+    .carousel-container {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        .carousel-item {
+            // background: rebeccapurple;
+            font: 13px;
+            list-style: none;
+            >img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+    .font-container {
+        position: absolute;
+        top: 50%;
+        .redfont {
+            color: rebeccapurple;
+            font-size: 30px;
+        }
+    }
+    .font-container:hover {
+        cursor: pointer;
+    }
+    .left-icon {
+        left: 0;
+    }
+    .right-icon {
+        right: 0;
+    }
+}

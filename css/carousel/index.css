@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+.carousel {
+  margin: 30px; }
+
+.wrapper {
+  height: 300px;
+  width: 600px;
+  position: relative; }
+  .wrapper .carousel-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; }
+    .wrapper .carousel-container .carousel-item {
+      font: 13px;
+      list-style: none; }
+      .wrapper .carousel-container .carousel-item > img {
+        width: 100%;
+        height: 100%; }
+  .wrapper .font-container {
+    position: absolute;
+    top: 50%; }
+    .wrapper .font-container .redfont {
+      color: rebeccapurple;
+      font-size: 30px; }
+  .wrapper .font-container:hover {
+    cursor: pointer; }
+  .wrapper .left-icon {
+    left: 0; }
+  .wrapper .right-icon {
+    right: 0; }
