@@ -5,7 +5,7 @@
 .wrapper {
   margin: 50px; }
   .wrapper ul * {
-    transition: all .1s linear; }
+    transition: all .2s linear; }
   .wrapper .container {
     list-style: none; }
     .wrapper .container .box-item {
