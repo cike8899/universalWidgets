@@ -1,0 +1,183 @@
+<!--<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ResizeablePane</title>
+    <link rel="stylesheet" href="../css/resizeablePane/index.css">
+</head>
+
+<body>
+    <div class="pane">
+        <div class="title">Resizeable Pane</div>
+        <div class="resize-r"></div>
+        <div class="resize-b"></div>
+        <div class="resize-rb"></div>
+    </div>
+    <script src="./index.js"></script>
+</body>
+
+</html>-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title>慕课网-Resizable</title>
+
+    <style type="text/css">
+        body {
+            margin: 0px;
+            padding: 50px;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .panel {
+            width: 400px;
+            height: 240px;
+            border: 1px solid #ccc;
+            position: relative;
+        }
+        
+        .panel .title {
+            background-color: #eee;
+            text-align: center;
+            line-height: 30px;
+            border: 1px solid #fff;
+            font-weight: bold;
+        }
+        
+        .ui-Resizable-r {
+            /* 右侧控制元素样式　*/
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            width: 10px;
+            height: 100%;
+            background-color: green;
+            cursor: e-resize;
+        }
+        
+        .ui-Resizable-b {
+            /* 底边控制元素样式　*/
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+            width: 100%;
+            height: 10px;
+            background-color: blue;
+            cursor: s-resize;
+        }
+        
+        .ui-Resizable-rb {
+            /* 右下角控制元素样式　*/
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            cursor: nw-resize;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="panel" id="ui-Resizable">
+        <div class="title">Resizable Panel</div>
+    </div>
+    <script type="text/javascript">
+        //	ctrl ：控制元素，panel ：面板 ， type 类型
+        var m_panel, m_ctrl, m_type;
+
+        //	move：		是否侦听鼠标移动， 
+        //	m_start_x：	鼠标相对ctrl元素的left、right 
+        //	m_to_x：	鼠标的新位置
+        var moving = 0, m_start_x = 0, m_start_y = 0, m_to_x = 0, m_to_y = 0;
+
+        //	面板最小尺寸
+        var m_min_w = 100, m_min_h = 40;
+
+        //	在控制元素中按下
+        function on_mousedown(e, panel, ctrl, type) {
+            var e = e || window.event;
+
+            //	计算出鼠标页面位置 和 当前元素位置的差 = 鼠标相对元素的位置
+
+            /* 任务一：计算鼠标按在控制元素上的x轴偏移*/
+            m_start_x = e.pageX - ctrl.offsetLeft;
+            m_start_y = e.pageY - ctrl.offsetTop;
+
+            m_panel = panel;
+            m_ctrl = ctrl;
+            m_type = type;
+
+            //	开始处理移动事件
+            moving = setInterval(on_move, 10);
+
+        }
+        //	页面鼠标移动侦听处理
+        document.onmousemove = function (e) {
+            var e = window.event || e;
+            /*　任务二：鼠标在页面上移动时，把鼠标x轴的位置更新到全局变量m_to_x　*/
+            m_to_x = e.pageX;
+            m_to_y = e.pageY;
+        }
+        //	鼠标移动处理
+        function on_move() {
+
+            if (moving) {
+                /* 任务三：计算当鼠标移动中时，控制元素left的位置　*/
+                var to_x = m_to_x - m_start_x;
+                // var to_y = m_to_y - m_start_y;
+                /* 任务四：更新控制元素的lef t*/
+                m_ctrl.style.left = m_to_x + 'px';
+                // m_ctrl.style.top = m_to_y + 'px';
+            }
+
+        }
+
+        //	鼠标弹起处理
+        document.onkeyup = document.onmouseup = function (e) {
+            clearInterval(moving);
+        }
+
+        function Resizable(panelId) {
+
+            var panel = document.getElementById(panelId);
+            //	插入调整控制元素
+            var r = document.createElement("div");
+            var b = document.createElement("div");
+            var rb = document.createElement("div");
+
+            r.class = r.className = 'ui-Resizable-r  ui-Resizable-ctrl';
+            b.class = b.className = 'ui-Resizable-b  ui-Resizable-ctrl';
+            rb.class = rb.className = 'ui-Resizable-rb ui-Resizable-ctrl';
+
+            panel.appendChild(r);
+            panel.appendChild(b);
+            panel.appendChild(rb);
+
+            //	为调整控制元素设置拖拽处理
+            r.addEventListener('mousedown', function (e) {
+                on_mousedown(e, panel, r, 'r');
+            })
+            b.addEventListener('mousedown', function (e) {
+                on_mousedown(e, panel, b, 'b');
+            })
+            rb.addEventListener('mousedown', function (e) {
+                on_mousedown(e, panel, rb, 'rb');
+            })
+        }
+        Resizable('ui-Resizable');
+    </script>
+</body>
+
+</html>
