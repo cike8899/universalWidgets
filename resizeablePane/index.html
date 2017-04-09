@@ -27,7 +27,7 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <title>慕课网-Resizable</title>
+    <title>Resizable</title>
 
     <style type="text/css">
         body {
@@ -127,6 +127,7 @@
         document.onmousemove = function (e) {
             var e = window.event || e;
             /*　任务二：鼠标在页面上移动时，把鼠标x轴的位置更新到全局变量m_to_x　*/
+
             m_to_x = e.pageX;
             m_to_y = e.pageY;
         }
@@ -136,10 +137,33 @@
             if (moving) {
                 /* 任务三：计算当鼠标移动中时，控制元素left的位置　*/
                 var to_x = m_to_x - m_start_x;
-                // var to_y = m_to_y - m_start_y;
-                /* 任务四：更新控制元素的lef t*/
-                m_ctrl.style.left = m_to_x + 'px';
-                // m_ctrl.style.top = m_to_y + 'px';
+                var to_y = m_to_y - m_start_y;
+
+                var min_left = m_panel.offsetLeft;
+                var min_top = m_panel.offsetTop;
+
+                //或者 to_x要大于等于min_left
+                to_x = Math.max(to_x, min_left);
+                to_y = Math.max(to_y, min_top);
+
+                if (m_type === "r" && to_x > 0) {
+                    // var to_y = m_to_y - m_start_y;
+                    /* 任务四：更新控制元素的lef t*/
+                    m_ctrl.style.left = to_x + 'px';
+                    m_panel.style.width = to_x + 10 + 'px';
+                    // m_ctrl.style.top = m_to_y + 'px';
+                } else if (m_type === "b" && to_y > 0) {
+                    // var to_y = m_to_y - m_start_y;
+                    /* 任务四：更新控制元素的lef t*/
+                    m_ctrl.style.top = to_y + 'px';
+                    m_panel.style.height = to_y + 10 + 'px';
+                } else if (m_type === "rb" && to_x > 0 && to_y > 0) {
+                    m_ctrl.style.left = to_x + 'px';
+                    m_ctrl.style.top = to_y + 'px';
+                    m_panel.style.width = to_x + 20 + 'px';
+                    m_panel.style.height = to_y + 20 + 'px';
+                }
+
             }
 
         }
@@ -147,6 +171,12 @@
         //	鼠标弹起处理
         document.onkeyup = document.onmouseup = function (e) {
             clearInterval(moving);
+            moving = 0;
+            var cls = document.getElementsByClassName('ui-Resizable-ctrl');
+            for (var i = 0; i < cls.length; i++) {
+                cls[i].style.left = '';
+                cls[i].style.top = '';
+            }
         }
 
         function Resizable(panelId) {
