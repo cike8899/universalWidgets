@@ -8,7 +8,9 @@ gulp.task('sass', function () {
     return gulp.src('**/*.scss')
         .pipe(sass.sync().on('error', sass.logError))
         .pipe(gulp.dest('./css'))
-        .pipe(livereload());
+        .pipe(livereload({
+            post: 9001
+        }));
 });
 
 gulp.task('watch', function () {
