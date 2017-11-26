@@ -1,0 +1,113 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+input[type="checkbox"] {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    left: 50%;
+    cursor: pointer;
+}
+
+p {
+    position: relative;
+    left: 50%;
+    transform: translateX(45px) translateY(-30px);
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.slide-list {
+    width: 2400px;
+    height: 300px;
+    left: -400px;
+    position: absolute;
+}
+
+.slide-list li {
+    list-style-type: none;
+    float: left;
+    width: 400px;
+    height: 100%;
+    text-align: center;
+    font-size: 60px;
+}
+
+.slide-list li:nth-child(1),
+.slide-list li:nth-child(5) {
+    background-color: red;
+}
+
+.slide-list li:nth-child(2),
+.slide-list li:nth-child(6) {
+    background-color: blue;
+}
+
+.slide-list li:nth-child(3) {
+    background-color: green;
+}
+
+.slide-list li:nth-child(4) {
+    background-color: yellow;
+}
+
+#overflow:checked~.container {
+    overflow: hidden;
+}
+
+.container {
+    width: 400px;
+    height: 300px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.slide-arrows {
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    width: 100%;
+    height: 60px;
+    cursor: pointer;
+}
+
+.slide-arrows li {
+    font-size: 60px;
+    line-height: 60px;
+    height: 100%;
+    text-align: center;
+    float: left;
+    list-style-type: none;
+    background-color: #686c71;
+    padding: 10px;
+    transform: translateY(-40px);
+}
+
+#next {
+    position: absolute;
+    right: 0;
+}
+
+.slide-dots {
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    line-height: 30px;
+}
+
+.slide-dots-item {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-left: 6px;
+    border: 1px solid #06c53f;
+    border-radius: 50%;
+}
+
+.current {
+    background-color: #000;
+}
